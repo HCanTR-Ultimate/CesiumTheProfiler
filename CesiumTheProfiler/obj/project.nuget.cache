@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ps49dpntpiY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Halit Can\\Documents\\Visual Studio Projeleri\\CesiumTheProfiler\\CesiumTheProfiler\\CesiumTheProfiler.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Halit Can\\.nuget\\packages\\system.codedom\\10.0.1\\system.codedom.10.0.1.nupkg.sha512",
+    "C:\\Users\\Halit Can\\.nuget\\packages\\system.management\\10.0.1\\system.management.10.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

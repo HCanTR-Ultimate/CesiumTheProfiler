@@ -1,0 +1,60 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Halit Can\\Documents\\Visual Studio Projeleri\\CesiumTheProfiler\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A3B618F7-F251-458C-AC83-DCF5EC6545D3}|CesiumTheProfiler\\CesiumTheProfiler.csproj|c:\\users\\halit can\\documents\\visual studio projeleri\\cesiumtheprofiler\\cesiumtheprofiler\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3B618F7-F251-458C-AC83-DCF5EC6545D3}|CesiumTheProfiler\\CesiumTheProfiler.csproj|solutionrelative:cesiumtheprofiler\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3B618F7-F251-458C-AC83-DCF5EC6545D3}|CesiumTheProfiler\\CesiumTheProfiler.csproj|c:\\users\\halit can\\documents\\visual studio projeleri\\cesiumtheprofiler\\cesiumtheprofiler\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A3B618F7-F251-458C-AC83-DCF5EC6545D3}|CesiumTheProfiler\\CesiumTheProfiler.csproj|solutionrelative:cesiumtheprofiler\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Halit Can\\Documents\\Visual Studio Projeleri\\CesiumTheProfiler\\CesiumTheProfiler\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "CesiumTheProfiler\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Halit Can\\Documents\\Visual Studio Projeleri\\CesiumTheProfiler\\CesiumTheProfiler\\MainWindow.xaml",
+              "RelativeToolTip": "CesiumTheProfiler\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-11T15:00:11.981Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Halit Can\\Documents\\Visual Studio Projeleri\\CesiumTheProfiler\\CesiumTheProfiler\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "CesiumTheProfiler\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Halit Can\\Documents\\Visual Studio Projeleri\\CesiumTheProfiler\\CesiumTheProfiler\\MainWindow.xaml.cs",
+              "RelativeToolTip": "CesiumTheProfiler\\MainWindow.xaml.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwCEAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-11T15:00:09.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
