@@ -1,0 +1,215 @@
+﻿<Window x:Class="CesiumTheProfiler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Cesium Profiler v1.0" Height="700" Width="1500" Background="#F4F7F9">
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="White" CornerRadius="10" Margin="5" Padding="15" BorderBrush="#DDE4ED" BorderThickness="1">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="2" Opacity="0.05"/>
+            </Border.Effect>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock Text="İşlemci (CPU)" FontSize="20" FontWeight="ExtraBold" Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                    <GroupBox Header="Sistem Özellikleri" Margin="0,0,0,15">
+                        <StackPanel Margin="5">
+                            <Grid Margin="0,3">
+                                <TextBlock Text="Model:" FontWeight="SemiBold" Foreground="#7F8C8D"/>
+                                <TextBlock x:Name="CpuModel" Text="Intel Core i5-12400F" HorizontalAlignment="Right" FontWeight="Medium"/>
+                            </Grid>
+                            <Grid Margin="0,3">
+                                <TextBlock Text="Mimari:" FontWeight="SemiBold" Foreground="#7F8C8D"/>
+                                <TextBlock x:Name="CpuArchitecture" Text="x64" HorizontalAlignment="Right"/>
+                            </Grid>
+                            <Grid Margin="0,3">
+                                <TextBlock Text="Çekirdek:" FontWeight="SemiBold" Foreground="#7F8C8D"/>
+                                <TextBlock x:Name="CpuCore" Text="6 Fiziksel / 12 Mantıksal" HorizontalAlignment="Right"/>
+                            </Grid>
+                            <Separator Margin="0,8" Background="#ECF0F1"/>
+                            <Grid Margin="0,2">
+                                <TextBlock Text="L1 Cache:" FontSize="11" Foreground="#95A5A6"/>
+                                <TextBlock x:Name="CpuL1" Text="384 KB" HorizontalAlignment="Right" FontSize="11"/>
+                            </Grid>
+                            <Grid Margin="0,2">
+                                <TextBlock Text="L2 Cache:" FontSize="11" Foreground="#95A5A6"/>
+                                <TextBlock x:Name="CpuL2" Text="7.5 MB" HorizontalAlignment="Right" FontSize="11"/>
+                            </Grid>
+                            <Grid Margin="0,2">
+                                <TextBlock Text="L3 Cache:" FontSize="11" Foreground="#95A5A6"/>
+                                <TextBlock x:Name="CpuL3" Text="18 MB" HorizontalAlignment="Right" FontSize="11"/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox Header="Anlık Performans" Margin="0,0,0,15">
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Genel Kullanım Yükü" FontSize="11" Margin="0,0,0,5" FontWeight="Bold" Foreground="#34495E"/>
+                            <Grid Margin="0,0,0,15">
+                                <ProgressBar x:Name="GeneralCpuProgress" Value="42" Height="18" Foreground="#3498DB" Background="#EBF5FB" BorderThickness="0" />
+                                <TextBlock x:Name="GeneralCpuText" Text="42%" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" FontWeight="Bold" Foreground="Black"/>
+                            </Grid>
+
+                            <TextBlock Text="Çekirdek Başına Dağılım" FontSize="11" Margin="0,0,0,8" FontWeight="Bold" Foreground="#34495E"/>
+
+                            <ListBox ItemsSource="{Binding CpuCores}"
+         BorderThickness="0"
+         Background="Transparent"
+         HorizontalContentAlignment="Stretch">
+
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="50"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="{Binding CoreName}"
+                           VerticalAlignment="Center"
+                           FontSize="11"/>
+
+                                            <ProgressBar Grid.Column="1"
+                             Value="{Binding UsageValue}"
+                             Height="10"
+                             Foreground="{Binding UsageBrush}"
+                             Background="#E8F8F5"
+                             BorderThickness="0"/>
+
+                                            <TextBlock Grid.Column="2"
+                           Text="{Binding UsageText}"
+                           HorizontalAlignment="Right"
+                           FontSize="10"
+                           VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+
+
+                        </StackPanel>
+                    </GroupBox>
+
+                    <TextBlock Text="En Çok CPU Kullanan Süreçler" FontWeight="Bold" Margin="0,5,0,8" HorizontalAlignment="Center" Foreground="#2C3E50"/>
+                    <Border Background="#FDFEFE" BorderBrush="#EBEDEF" BorderThickness="1" CornerRadius="5">
+                        <ListBox BorderThickness="0" Background="Transparent" HorizontalContentAlignment="Stretch" ItemsSource="{Binding CpuProcesses}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <ListBoxItem Padding="5">
+                                        <Grid>
+                                            <TextBlock Text="{Binding DisplayName}" FontSize="12"/>
+                                            <TextBlock Text="{Binding ProcessUsageText}" HorizontalAlignment="Right" Foreground="#3498DB" FontWeight="Bold"/>
+                                        </Grid>
+                                    </ListBoxItem>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Border>
+
+                    <Grid Margin="0,20,0,0">
+                        <TextBlock Text="Sistem Çalışma Süresi:" FontSize="11" VerticalAlignment="Center" Foreground="#7F8C8D"/>
+                        <TextBlock x:Name="UptimeText" Text="02:14:45" HorizontalAlignment="Right" FontWeight="Bold" FontSize="13" Foreground="#2C3E50"/>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <Border Grid.Column="1" Background="White" CornerRadius="10" Margin="5" Padding="15" BorderBrush="#DDE4ED" BorderThickness="1">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="2" Opacity="0.05"/>
+            </Border.Effect>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock Text="Bellek (RAM)" FontSize="20" FontWeight="ExtraBold" Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                    <GroupBox Header="Donanım Özellikleri" Margin="0,0,0,15">
+                        <StackPanel Margin="5">
+                            <Grid Margin="0,3">
+                                <TextBlock Text="Toplam Kapasite:" FontWeight="SemiBold" Foreground="#7F8C8D"/>
+                                <TextBlock x:Name="RamCapacity" Text="16.0 GB" HorizontalAlignment="Right" FontWeight="Medium"/>
+                            </Grid>
+                            <Grid Margin="0,3">
+                                <TextBlock Text="Hız:" FontWeight="SemiBold" Foreground="#7F8C8D"/>
+                                <TextBlock x:Name="RamSpeed" Text="3200 MHz" HorizontalAlignment="Right"/>
+                            </Grid>
+                            <Grid Margin="0,3">
+                                <TextBlock Text="Yuvalar:" FontWeight="SemiBold" Foreground="#7F8C8D"/>
+                                <TextBlock x:Name="RamSlots" Text="2 / 4" HorizontalAlignment="Right"/>
+                            </Grid>
+                            <Grid Margin="0,3">
+                                <TextBlock Text="Form Faktörü:" FontWeight="SemiBold" Foreground="#7F8C8D"/>
+                                <TextBlock x:Name="RamFormFactor" Text="DIMM" HorizontalAlignment="Right"/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox Header="Anlık Kullanım" Margin="0,0,0,15">
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Bellek Kullanım Oranı" FontSize="11" Margin="0,0,0,5" FontWeight="Bold" Foreground="#34495E"/>
+                            <Grid Margin="0,0,0,15">
+                                <ProgressBar x:Name="RamUsedProgressbar" Value="54" Height="18" Foreground="#FF3498DB" Background="#F4ECF7" BorderThickness="0" />
+                                <TextBlock x:Name="RamUsedPercentage" Text="54%" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" FontWeight="Bold" Foreground="Black"/>
+                            </Grid>
+
+                            <Grid Margin="0,3">
+                                <TextBlock Text="Kullanılan:" FontWeight="SemiBold" Foreground="#7F8C8D"/>
+                                <TextBlock x:Name="RamUsed" Text="8.6 GB" HorizontalAlignment="Right" Foreground="#FF3498DB" FontWeight="Bold"/>
+                            </Grid>
+                            <Grid Margin="0,3">
+                                <TextBlock Text="Boşta:" FontWeight="SemiBold" Foreground="#7F8C8D"/>
+                                <TextBlock x:Name="RamFree" Text="7.4 GB" HorizontalAlignment="Right" Foreground="#27AE60"/>
+                            </Grid>
+                            <Grid Margin="0,3">
+                                <TextBlock Text="Sıkıştırılmış:" FontWeight="SemiBold" Foreground="#7F8C8D"/>
+                                <TextBlock x:Name="RamCompressed" Text="145 MB" HorizontalAlignment="Right"/>
+                            </Grid>
+
+                            <Separator Margin="0,8" Background="#ECF0F1"/>
+
+                            <Grid Margin="0,2">
+                                <TextBlock Text="Commit Charge:" FontSize="11" Foreground="#95A5A6"/>
+                                <TextBlock x:Name="RamCommit" Text="10.2 / 18.5 GB" HorizontalAlignment="Right" FontSize="11"/>
+                            </Grid>
+                            <Grid Margin="0,2">
+                                <TextBlock Text="Önbelleğe Alınan:" FontSize="11" Foreground="#95A5A6"/>
+                                <TextBlock x:Name="RamCache" Text="4.1 GB" HorizontalAlignment="Right" FontSize="11"/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <TextBlock Text="En Çok RAM Kullanan Süreçler" FontWeight="Bold" Margin="0,5,0,8" HorizontalAlignment="Center" Foreground="#2C3E50"/>
+                    <Border Background="#FDFEFE" BorderBrush="#EBEDEF" BorderThickness="1" CornerRadius="5">
+                        <ListBox BorderThickness="0" Background="Transparent" HorizontalContentAlignment="Stretch" ItemsSource="{Binding RamProcesses}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding DisplayName}" FontSize="12" VerticalAlignment="Center"/>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                            <TextBlock Text="{Binding ProcessUsageMBDisplay}" Foreground="#FF3498DB" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                            <TextBlock Text="{Binding ProcessUsagePercentageDisplay}" Foreground="#7F8C8D" FontSize="11" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Window>
